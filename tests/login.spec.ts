@@ -1,19 +1,45 @@
 import { test, expect } from '@playwright/test';
+import { LoginPage } from '../POMs/loginPage';
+import { LoginEnvironments } from '../environments/loginEnvironments';
+import { SettingsPage } from '../POMs/settingsPage';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://cobe-accounting.herokuapp.com/');
-  await expect(page).toHaveTitle("cobe-accounting");
-});
 
-test('login', async ({ page }) => {
-    await page.goto('https://cobe-accounting.herokuapp.com/');
-    await page.getByLabel("Email").fill('hello@cobeisfresh.com');
-    await page.locator('form').getByRole('img').click();
-    await page.getByLabel("Password").fill('cobeisfresh123');
-    await page.getByRole('button', { name: 'Log In' }).click();
-    await page.waitForURL('https://cobe-accounting.herokuapp.com/home/Offers?page=1');
+test('login - correct credentials', async ({ page }) => {
+
+  const loginPage = new LoginPage(page);
+  const loginEnvironments = new LoginEnvironments(page);
+
+
+    await page.goto(loginEnvironments.baseUrl);
+    await loginPage.login(loginEnvironments.validEmail, loginEnvironments.validPassword);
+    await page.waitForURL(loginEnvironments.homeUrl);
     
   });
 
+  test('login - incorrect credentials', async ({ page }) => {
 
+    const loginPage = new LoginPage(page);
+    const loginEnvironments = new LoginEnvironments(page);
+  
+  
+      await page.goto(loginEnvironments.baseUrl);
+      await loginPage.login(loginEnvironments.invalidEmail, loginEnvironments.invalidPassword);
+      (page.locator('div').getByText("Incorrect email or password").first()); 
+      
+    });
+  
+    
+    test('show/hide password', async ({ page }) => {
 
+      const loginPage = new LoginPage(page);
+      const loginEnvironments = new LoginEnvironments(page);
+    
+    
+        await page.goto(loginEnvironments.baseUrl);
+        await loginPage.show(loginEnvironments.validEmail, loginEnvironments.validPassword);
+        await (page.locator('form').getByText("cobeisfresh123").first()); 
+         
+       
+        
+      });
+    

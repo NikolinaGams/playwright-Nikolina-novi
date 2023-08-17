@@ -1,8 +1,13 @@
 import { test, expect } from '@playwright/test';
-
+import { LoginPage } from '../POMs/loginPage';
+import { LoginEnvironments } from '../environments/loginEnvironments';
 test('registration', async ({ page }) => {
-    await page.goto('https://cobe-accounting.herokuapp.com/');
-    await expect(page.locator('Registration')).not.toBeVisible();
+   
+  const loginPage = new LoginPage(page);
+  const loginEnvironments = new LoginEnvironments(page);
+
+  await page.goto(loginEnvironments.baseUrl);
+  await expect(page.locator('Register')).not.toBeVisible();
    
   
 
