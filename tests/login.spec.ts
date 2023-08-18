@@ -23,9 +23,8 @@ test('login - correct credentials', async ({ page }) => {
   
   
       await page.goto(loginEnvironments.baseUrl);
-      await loginPage.login(loginEnvironments.invalidEmail, loginEnvironments.invalidPassword);
-      (page.locator('div').getByText("Incorrect email or password").first()); 
-      
+      await loginPage.login(loginEnvironments.invalidEmail,loginEnvironments.invalidPassword);
+      await loginPage.incorrect(loginEnvironments.emailError,loginEnvironments.passwordError);
     });
   
     
@@ -37,8 +36,7 @@ test('login - correct credentials', async ({ page }) => {
     
         await page.goto(loginEnvironments.baseUrl);
         await loginPage.show(loginEnvironments.validEmail, loginEnvironments.validPassword);
-        await (page.locator('form').getByText("cobeisfresh123").first()); 
-         
+        await loginPage.password.isVisible();         
        
         
       });

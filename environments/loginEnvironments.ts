@@ -8,6 +8,10 @@ export class LoginEnvironments {
     invalidEmail: string;
     invalidPassword: string;
     homeUrl: string;
+    emailError: string;
+    passwordError: string;
+    password: string;
+    registerButton: string;
     
 
     constructor(page: Page){
@@ -18,5 +22,9 @@ export class LoginEnvironments {
         this.invalidEmail = 'cobeisfresh@helllo.com';
         this.invalidPassword = 'cobe123';
         this.homeUrl = 'https://cobe-accounting.herokuapp.com/home/Offers?page=1';
+        this.emailError = 'Incorrect email or password';
+        this.passwordError = 'Incorrect email or password';
+        this.password = 'cobeisfresh123';
+        this.registerButton = 'Register';
     }
 }

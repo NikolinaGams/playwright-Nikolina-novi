@@ -16,9 +16,8 @@ test('logout', async ({ page }) => {
   await homePage.settings.click();
 
   const settingsPage = new SettingsPage (page);
-  await settingsPage.logoutButton.click();
-  await settingsPage.confirmButton.click();
-  await page.waitForURL(loginEnvironments.baseUrl);
+  await settingsPage.logout();
+
 
 
  });

@@ -23,6 +23,8 @@ constructor(page: Page) {
 async logout() {
     await this.logoutButton.click();
     await this.confirmButton.click();
+    
+
 }
 
 }

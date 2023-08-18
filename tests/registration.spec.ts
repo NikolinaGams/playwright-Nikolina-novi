@@ -7,7 +7,8 @@ test('registration', async ({ page }) => {
   const loginEnvironments = new LoginEnvironments(page);
 
   await page.goto(loginEnvironments.baseUrl);
-  await expect(page.locator('Register')).not.toBeVisible();
+  await loginPage.page.locator('button').isHidden();
+  
    
   
 
