@@ -9,7 +9,8 @@ export class LoginPage {
     readonly emailError: Locator;
     readonly passwordError: Locator;
     readonly password: Locator;
-   
+    readonly registerButton: Locator;
+    readonly homeUrl: Locator;
 
     constructor(page: Page){
         this.page = page;
@@ -17,34 +18,37 @@ export class LoginPage {
         this.passwordInputField = page.locator('label').filter({ hasText: 'Password' }).locator('div').first()
         this.loginButton = page.getByRole('button', { name: 'Log In' })
         this.showPassword= page.locator('form').getByRole('img')
-        this.emailError = page.locator('div').filter({ hasText: /^Incorrect email or password$/ }).first()
-        this.passwordError = page.locator('div').filter({ hasText: /^Incorrect email or password$/ }).first()
-        this.password = page.getByLabel('Password')
+        this.emailError = page.locator('div').filter({ hasText: 'Incorrect email or password'}).first()
+        this.passwordError = page.locator('div').filter({ hasText: 'Incorrect email or password' }).first()
+        this.password = page.getByLabel('Password');
+        this.registerButton = page.locator('button', { hasText: 'Register' });
+        this.homeUrl = page.getByRole('link',{ name: 'Home'});
     }
 
     async login(emailValue: string, passwordValue: string){
         await this.emailInputField.fill(emailValue);
         await this.passwordInputField.fill(passwordValue);
         await this.loginButton.click();
-        
     }
 
+    async succesfulLogin(){
+        await expect(this.homeUrl).toBeVisible();
+    }
 
-    async show(emailValue: string, passwordValue: string){
-        await this.emailInputField.fill(emailValue);
-        await this.passwordInputField.fill(passwordValue);
+    async showOrHidePassword(){
+        await this.login
+        await this.succesfulLogin
         await this.showPassword.click();
-        await this.password.isVisible();
-        
-        
-        
-}
-async incorrect(emailError: string, passwordError: string){
-        await this.emailError.isVisible();
-        await this.passwordError.isVisible();
-    
+        await this.password.isVisible();   
+    }
 
-}
+    async errorMessage(){
+        await expect(this.emailError).toBeVisible();
+        await expect(this.passwordError).toBeVisible();
+    }
 
-    
+    async validCredentials(emailValue: string, passwordValue: string){
+        await this.emailInputField.fill(emailValue);
+        await this.passwordInputField.fill(passwordValue); 
+    }
 }

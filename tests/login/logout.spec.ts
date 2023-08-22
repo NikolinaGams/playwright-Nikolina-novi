@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage} from '../POMs/loginPage';
-import { HomePage } from '../POMs/homePage';
-import { LoginEnvironments } from '../environments/loginEnvironments';
-import { SettingsPage } from '../POMs/settingsPage';
+import { LoginPage} from '../../POMs/loginPage';
+import { HomePage } from '../../POMs/homePage';
+import { LoginEnvironments } from '../../environments/loginEnvironments';
+import { SettingsPage } from '../../POMs/settingsPage';
 
 test('logout', async ({ page }) => {
   const loginPage = new LoginPage(page);

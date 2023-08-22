@@ -12,6 +12,7 @@ export class LoginEnvironments {
     passwordError: string;
     password: string;
     registerButton: string;
+    newOfferModal: string;
     
 
     constructor(page: Page){
@@ -26,5 +27,6 @@ export class LoginEnvironments {
         this.passwordError = 'Incorrect email or password';
         this.password = 'cobeisfresh123';
         this.registerButton = 'Register';
+        
     }
 }
