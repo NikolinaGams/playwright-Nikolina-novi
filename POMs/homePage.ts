@@ -19,7 +19,7 @@ constructor(page: Page){
     this.newOfferButton = page.getByRole('button', { name: 'Create new offer' })
 }
 
-async home(){
+async goToSettings(){
     await this.settings.click()
 
 }

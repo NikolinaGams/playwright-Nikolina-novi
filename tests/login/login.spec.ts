@@ -19,7 +19,7 @@ test('login - correct credentials', async ({ page }) => {
 
       await page.goto(loginEnvironments.baseUrl);
       await loginPage.login(loginEnvironments.invalidEmail,loginEnvironments.invalidPassword);
-      await loginPage.errorMessage();
+      await loginPage.noProjectsErrorMessage();
     });
   
     test('show/hide password', async ({ page }) => {
@@ -28,6 +28,6 @@ test('login - correct credentials', async ({ page }) => {
     
         await page.goto(loginEnvironments.baseUrl);
         await loginPage.validCredentials(loginEnvironments.validEmail, loginEnvironments.validPassword);
-        await loginPage.showOrHidePassword();
+        
       });
     

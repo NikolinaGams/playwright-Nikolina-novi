@@ -3,20 +3,17 @@ import { LoginEnvironments } from '../environments/loginEnvironments';
 import { HomePage } from './homePage';
 import { LoginPage } from './loginPage';
 
-
 export class OfferModal {
-readonly page: Page;
-readonly clientField: Locator;
-readonly projectField: Locator;
-readonly languageField: Locator;
-readonly noProjectsError: Locator;
-readonly newOfferModal: Locator;
-readonly oneProject: Locator;
-readonly continueButton: Locator;
-readonly cancelButton: Locator;
-readonly logo: Locator;
-
-
+    readonly page: Page;
+    readonly clientField: Locator;
+    readonly projectField: Locator;
+    readonly languageField: Locator;
+    readonly noProjectsError: Locator;
+    readonly newOfferModal: Locator;
+    readonly oneProject: Locator;
+    readonly continueButton: Locator;
+    readonly cancelButton: Locator;
+    readonly logo: Locator;
 
 constructor(page: Page){
     this.page = page;
@@ -41,10 +38,10 @@ async chooseClient(client: string){
     await this.page.getByText(client, {exact: true}).click();
 }
 
-async clientHasNoOffers(){
+async clientHasNoProjects(){
     await expect(this.noProjectsError).toBeVisible();
 }
-async disabledProjectField(){
+async projectIsPreset(){
     await expect(this.projectField).toBeHidden();    
 }
 async disabledContinueButton(){

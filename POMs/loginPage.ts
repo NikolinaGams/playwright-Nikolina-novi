@@ -35,14 +35,7 @@ export class LoginPage {
         await expect(this.homeUrl).toBeVisible();
     }
 
-    async showOrHidePassword(){
-        await this.login
-        await this.succesfulLogin
-        await this.showPassword.click();
-        await this.password.isVisible();   
-    }
-
-    async errorMessage(){
+    async noProjectsErrorMessage(){
         await expect(this.emailError).toBeVisible();
         await expect(this.passwordError).toBeVisible();
     }
@@ -50,5 +43,8 @@ export class LoginPage {
     async validCredentials(emailValue: string, passwordValue: string){
         await this.emailInputField.fill(emailValue);
         await this.passwordInputField.fill(passwordValue); 
+        await this.showPassword.click();
+        await this.password.isVisible(); 
+        
     }
 }
